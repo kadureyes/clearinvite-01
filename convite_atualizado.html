@@ -28,32 +28,35 @@
             max-width: 600px;
             width: 100%;
             overflow: hidden;
+            position: relative;
         }
 
         .slide {
-            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             padding: 50px 40px;
             text-align: center;
-            min-height: 500px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            animation: slideIn 0.3s ease;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
         .slide.active {
-            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+            position: relative;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .container::after {
+            content: '';
+            display: block;
+            padding-bottom: 100%;
         }
 
         /* Progresso */
@@ -61,6 +64,8 @@
             height: 4px;
             background: #e0e0e0;
             display: flex;
+            position: relative;
+            z-index: 10;
         }
 
         .progress-fill {
@@ -126,6 +131,7 @@
             padding: 25px;
             margin: 30px 0;
             text-align: left;
+            border-radius: 6px;
         }
 
         .info-box p {
@@ -181,6 +187,8 @@
             flex-direction: column;
             gap: 12px;
             margin-bottom: 30px;
+            max-height: 300px;
+            overflow-y: auto;
         }
 
         .opcao-radio {
@@ -192,6 +200,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             border: 2px solid transparent;
+            flex-shrink: 0;
         }
 
         .opcao-radio:hover {
