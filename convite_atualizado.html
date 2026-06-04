@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitação de Projeto 💕</title>
+    <title>Solicitação de Projeto</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #f5f5f5;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,8 +23,8 @@
 
         .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 100%;
             overflow: hidden;
@@ -32,346 +32,337 @@
 
         .slide {
             display: none;
-            padding: 60px 40px;
+            padding: 50px 40px;
             text-align: center;
-            animation: fadeIn 0.5s ease-in;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .slide.active {
-            display: block;
+            display: flex;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Progresso */
+        .progress-bar {
+            height: 4px;
+            background: #e0e0e0;
+            display: flex;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #333;
+            transition: width 0.3s ease;
         }
 
         /* Slide 1 - Título */
-        .slide-titulo {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 40px;
-        }
-
         .slide-titulo h1 {
-            font-size: 3em;
+            font-size: 2.2em;
+            color: #333;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
 
         .slide-titulo p {
-            font-size: 1.3em;
+            font-size: 1.1em;
+            color: #666;
             margin-bottom: 40px;
-            opacity: 0.9;
+            line-height: 1.6;
         }
 
         /* Slide 2 - Pergunta Principal */
-        .slide-pergunta {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 80px 40px;
-        }
-
         .slide-pergunta h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #ffeb3b;
+            font-size: 1em;
+            color: #999;
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         .slide-pergunta h3 {
-            font-size: 2.5em;
+            font-size: 2em;
+            color: #333;
             margin-bottom: 50px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
         }
 
         /* Slide 3 - Data e Horário */
-        .slide-data {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            padding: 60px 40px;
-        }
-
         .slide-data h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #ffeb3b;
+            font-size: 1em;
+            color: #999;
+            margin-bottom: 30px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         .info-box {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #333;
             padding: 25px;
-            margin: 20px 0;
-            backdrop-filter: blur(10px);
+            margin: 30px 0;
+            text-align: left;
         }
 
         .info-box p {
-            font-size: 1.2em;
-            margin: 15px 0;
+            font-size: 1.05em;
+            color: #333;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: #333;
+            font-weight: 600;
         }
 
         /* Slide 4 - Comida */
-        .slide-comida {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            color: #333;
-            padding: 60px 40px;
-        }
-
         .slide-comida h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #333;
+            font-size: 1em;
+            color: #999;
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         .slide-comida h3 {
             font-size: 1.8em;
-            margin-bottom: 40px;
             color: #333;
+            margin-bottom: 35px;
+            font-weight: 600;
         }
 
         .opcoes-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 30px;
         }
 
         .opcao-radio {
             display: flex;
             align-items: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 10px;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
 
         .opcao-radio:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateX(10px);
+            background: #f0f0f0;
+            border-color: #333;
         }
 
         .opcao-radio input[type="radio"] {
             margin-right: 15px;
             cursor: pointer;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
+            accent-color: #333;
         }
 
         .opcao-radio label {
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1.05em;
+            color: #333;
             flex: 1;
             text-align: left;
+            font-weight: 500;
         }
 
         /* Slide 5 - Logística */
-        .slide-logistica {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: #333;
-            padding: 60px 40px;
-        }
-
         .slide-logistica h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #333;
+            font-size: 1em;
+            color: #999;
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         .slide-logistica h3 {
             font-size: 1.8em;
-            margin-bottom: 40px;
             color: #333;
+            margin-bottom: 35px;
+            font-weight: 600;
         }
 
         .endereco-input {
             display: none;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .endereco-input input {
             width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 1em;
             font-family: inherit;
+            transition: border-color 0.2s ease;
+        }
+
+        .endereco-input input:focus {
+            outline: none;
+            border-color: #333;
         }
 
         /* Slide 6 - Observações */
-        .slide-observacoes {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: #333;
-            padding: 60px 40px;
+        .slide-observacoes h2 {
+            font-size: 1em;
+            color: #999;
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .slide-observacoes h2 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .slide-observacoes p {
+            font-size: 1.05em;
+            color: #666;
+            margin-bottom: 25px;
         }
 
         .slide-observacoes textarea {
             width: 100%;
-            height: 150px;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
+            height: 130px;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 1em;
             font-family: inherit;
             resize: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .slide-observacoes textarea:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Slide Final */
+        .slide-final h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .slide-final p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         /* Botões */
         .button-container {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             margin-top: 40px;
             flex-wrap: wrap;
         }
 
         button {
-            padding: 15px 40px;
-            font-size: 1.1em;
+            padding: 12px 32px;
+            font-size: 1em;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: all 0.2s ease;
             font-family: inherit;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #333;
             color: white;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            min-width: 140px;
         }
 
         .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+            background: #1a1a1a;
         }
 
         .btn-sim {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            background: #333;
             color: white;
-            box-shadow: 0 10px 25px rgba(17, 153, 142, 0.4);
+            min-width: 140px;
         }
 
         .btn-sim:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(17, 153, 142, 0.6);
+            background: #1a1a1a;
         }
 
         .btn-nao {
-            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
-            color: white;
-            box-shadow: 0 10px 25px rgba(238, 9, 121, 0.4);
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #ddd;
             position: relative;
+            min-width: 140px;
         }
 
         .btn-nao:hover {
-            transform: scale(0.9);
-            box-shadow: 0 15px 35px rgba(238, 9, 121, 0.6);
+            background: #e8e8e8;
         }
 
         .btn-proximo {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #333;
             color: white;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            min-width: 140px;
         }
 
         .btn-proximo:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+            background: #1a1a1a;
         }
 
         .btn-voltar {
-            background: #ccc;
+            background: #f0f0f0;
             color: #333;
+            border: 2px solid #ddd;
+            min-width: 140px;
         }
 
         .btn-voltar:hover {
-            background: #999;
+            background: #e8e8e8;
         }
 
-        /* Indicador de progresso */
-        .progress-bar {
-            height: 6px;
-            background: #eee;
-            display: flex;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s;
-        }
-
-        /* Mensagem Final */
-        .mensagem-final {
-            font-size: 2em;
-            margin-bottom: 30px;
-            animation: heartBeat 1s infinite;
-        }
-
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-        }
-
-        .emojis {
-            font-size: 3em;
-            margin: 20px 0;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .slide-final {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Mensagem de Tentativa */
+        .mensagem-tentativa {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
             color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.3s ease;
+            max-width: 90%;
+            text-align: center;
         }
 
-        .easter-egg {
-            display: inline-block;
-            margin: 0 5px;
-            font-size: 1.5em;
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
     </style>
 </head>
@@ -383,28 +374,29 @@
     <div class="container">
         <!-- Slide 1: Título -->
         <div class="slide slide-titulo active">
-            <h1>💌 SOLICITAÇÃO DE PROJETO! 💌</h1>
-            <p>Uma oportunidade especial para você...</p>
-            <button class="btn-primary" onclick="proximoSlide()">Clique aqui para começar</button>
+            <h1>Solicitação de Projeto</h1>
+            <p>Gostaria de dedicar um tempo especial com você para discutir uma ideia que tenho em mente.</p>
+            <div class="button-container">
+                <button class="btn-primary" onclick="proximoSlide()">Começar</button>
+            </div>
         </div>
 
         <!-- Slide 2: Pergunta Principal -->
         <div class="slide slide-pergunta">
-            <h2>⚠️ AVISO IMPORTANTE</h2>
+            <h2>Aviso Importante</h2>
             <h3>Queren, aceita sair comigo?</h3>
             <div class="button-container">
-                <button class="btn-sim" onclick="responderSim()">SIM! 💚</button>
-                <button class="btn-nao" onclick="proximoSlide()">Talvez... 😅</button>
+                <button class="btn-sim" onclick="responderSim()">Sim</button>
+                <button class="btn-nao" id="btnNao" onclick="tentarNao(event)">Não</button>
             </div>
         </div>
 
         <!-- Slide 3: Data e Horário -->
         <div class="slide slide-data">
-            <h2>📅 Data e Horário</h2>
+            <h2>Data e Horário</h2>
             <div class="info-box">
                 <p><strong>Data:</strong> [Insira a data aqui]</p>
                 <p><strong>Horário:</strong> [Insira o horário aqui]</p>
-                <p style="font-size: 0.9em; margin-top: 20px; color: #ffeb3b;">⏰ Tá atrasado? Sem problemas! 😄</p>
             </div>
             <div class="button-container">
                 <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
@@ -414,32 +406,32 @@
 
         <!-- Slide 4: O que comer -->
         <div class="slide slide-comida">
-            <h2>🍽️ O que você gostaria de comer?</h2>
-            <h3>Escolha uma opção:</h3>
+            <h2>Preferência de Comida</h2>
+            <h3>O que você gostaria de comer?</h3>
             <div class="opcoes-container">
                 <div class="opcao-radio">
                     <input type="radio" name="comida" id="pizza" value="Pizza">
-                    <label for="pizza">🍕 Pizza</label>
+                    <label for="pizza">Pizza</label>
                 </div>
                 <div class="opcao-radio">
                     <input type="radio" name="comida" id="japonesa" value="Comida Japonesa">
-                    <label for="japonesa">🍣 Comida Japonesa</label>
+                    <label for="japonesa">Comida Japonesa</label>
                 </div>
                 <div class="opcao-radio">
                     <input type="radio" name="comida" id="italiana" value="Comida Italiana">
-                    <label for="italiana">🍝 Comida Italiana</label>
+                    <label for="italiana">Comida Italiana</label>
                 </div>
                 <div class="opcao-radio">
                     <input type="radio" name="comida" id="thai" value="Comida Tailandesa">
-                    <label for="thai">🌶️ Comida Tailandesa</label>
+                    <label for="thai">Comida Tailandesa</label>
                 </div>
                 <div class="opcao-radio">
                     <input type="radio" name="comida" id="brasileira" value="Comida Brasileira">
-                    <label for="brasileira">🇧🇷 Comida Brasileira</label>
+                    <label for="brasileira">Comida Brasileira</label>
                 </div>
                 <div class="opcao-radio">
                     <input type="radio" name="comida" id="outro" value="Outro">
-                    <label for="outro">🤔 Outro</label>
+                    <label for="outro">Outro</label>
                 </div>
             </div>
             <div class="button-container">
@@ -450,20 +442,20 @@
 
         <!-- Slide 5: Logística -->
         <div class="slide slide-logistica">
-            <h2>🚗 Como nos encontramos?</h2>
-            <h3>Escolha uma opção:</h3>
+            <h2>Logística</h2>
+            <h3>Como nos encontramos?</h3>
             <div class="opcoes-container">
                 <div class="opcao-radio">
                     <input type="radio" name="logistica" id="lá" value="Nos encontramos lá" onchange="esconderEndereco()">
-                    <label for="lá">📍 Nos encontramos lá</label>
+                    <label for="lá">Nos encontramos lá</label>
                 </div>
                 <div class="opcao-radio">
                     <input type="radio" name="logistica" id="busca" value="Você me busca" onchange="mostrarEndereco()">
-                    <label for="busca">🚙 Você me busca</label>
+                    <label for="busca">Você me busca</label>
                 </div>
             </div>
             <div class="endereco-input" id="enderecoInput">
-                <input type="text" placeholder="Digite seu endereço aqui..." id="endereco">
+                <input type="text" placeholder="Digite seu endereço..." id="endereco">
             </div>
             <div class="button-container">
                 <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
@@ -473,9 +465,9 @@
 
         <!-- Slide 6: Observações -->
         <div class="slide slide-observacoes">
-            <h2>📝 Observações</h2>
-            <p style="margin-bottom: 20px; color: #555;">Tem algo a dizer? Deixa teu recado aqui!</p>
-            <textarea id="observacoes" placeholder="Escreva qualquer coisa aqui..."></textarea>
+            <h2>Observações</h2>
+            <p>Tem algo a dizer? Deixe seu recado aqui.</p>
+            <textarea id="observacoes" placeholder="Escreva aqui..."></textarea>
             <div class="button-container">
                 <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
                 <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
@@ -484,11 +476,9 @@
 
         <!-- Slide Final: Mensagem de Sucesso -->
         <div class="slide slide-final">
-            <div class="emojis">💕 🎉 💕</div>
-            <h1 class="mensagem-final" id="mensagemFinal">Você é incrível! 🌟</h1>
-            <p style="font-size: 1.3em; margin-bottom: 30px;">Sua resposta foi registrada com sucesso!</p>
-            <p style="font-size: 1.1em; margin-bottom: 40px;">Aguardando um retorno seu... 👀</p>
-            <div class="easter-egg">✨</div>
+            <h1>Perfeito!</h1>
+            <p>Sua resposta foi registrada com sucesso.</p>
+            <p>Até breve! 😊</p>
             <div class="button-container">
                 <button class="btn-primary" onclick="location.reload()">Começar novamente</button>
             </div>
@@ -497,8 +487,21 @@
 
     <script>
         let currentSlide = 0;
+        let tentativasNao = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
+        const btnNao = document.getElementById('btnNao');
+
+        const mensagensEasterEgg = [
+            "Pensa com carinho...",
+            "Você não vai se arrepender se clicar no SIM",
+            "Só preciso de uma chance!",
+            "Acredita em mim?",
+            "Seria tão especial...",
+            "Por favor? 🥺",
+            "Tenho certeza que você vai gostar!",
+            "Que tal dar uma oportunidade?"
+        ];
 
         function atualizarProgresso() {
             const progresso = ((currentSlide + 1) / totalSlides) * 100;
@@ -527,19 +530,39 @@
         }
 
         function responderSim() {
-            // Easter egg - o botão SIM cresce quando clicado
-            let btn = event.target;
-            let scale = 1.1;
-            btn.style.transform = `scale(${scale})`;
+            proximoSlide();
+        }
+
+        function tentarNao(event) {
+            event.preventDefault();
+            tentativasNao++;
+
+            // Easter egg: botão foge
+            const randomX = (Math.random() - 0.5) * 200;
+            const randomY = (Math.random() - 0.5) * 200;
             
-            // Efeito visual adicional
-            btn.style.boxShadow = '0 20px 50px rgba(17, 153, 142, 0.8)';
-            
+            btnNao.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+            // Mostrar mensagem a cada 2, 3, 4 tentativas
+            if (tentativasNao === 2 || tentativasNao === 3 || tentativasNao === 4 || tentativasNao % 3 === 0) {
+                const mensagem = mensagensEasterEgg[Math.floor(Math.random() * mensagensEasterEgg.length)];
+                mostrarMensagem(mensagem);
+            }
+        }
+
+        function mostrarMensagem(texto) {
+            // Remove mensagem anterior se existir
+            const msgAnterior = document.querySelector('.mensagem-tentativa');
+            if (msgAnterior) msgAnterior.remove();
+
+            const mensagem = document.createElement('div');
+            mensagem.className = 'mensagem-tentativa';
+            mensagem.textContent = texto;
+            document.body.appendChild(mensagem);
+
             setTimeout(() => {
-                proximoSlide();
-                btn.style.transform = 'scale(1)';
-                btn.style.boxShadow = '0 10px 25px rgba(17, 153, 142, 0.4)';
-            }, 300);
+                mensagem.remove();
+            }, 3000);
         }
 
         function mostrarEndereco() {
@@ -553,14 +576,6 @@
 
         // Inicializar
         mostrarSlide(0);
-
-        // Coletar dados antes de ir para o slide final
-        slides[slides.length - 1].addEventListener('click', function(e) {
-            if (e.target.textContent.includes('Próximo') && currentSlide === totalSlides - 2) {
-                // Você pode adicionar lógica para enviar os dados para um servidor aqui
-                console.log('Dados coletados!');
-            }
-        });
     </script>
 </body>
 </html>
