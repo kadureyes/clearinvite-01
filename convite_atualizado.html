@@ -11,47 +11,14 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             background: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .progress-bar {
-            height: 4px;
-            width: 100%;
-            background: #e0e0e0;
-            display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #8b7fd1;
-            transition: width 0.3s ease;
-        }
-
-        .slides-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            padding-top: 4px;
         }
 
         .container {
@@ -60,37 +27,46 @@
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 100%;
-            height: auto;
-            max-height: 90vh;
-            overflow-y: auto;
+            overflow: hidden;
         }
 
         .slide {
-            display: none !important;
+            display: none;
             padding: 50px 40px;
             text-align: center;
             min-height: 500px;
-            display: none;
+            display: flex;
             flex-direction: column;
             justify-content: center;
-            visibility: hidden;
-            position: absolute;
+            animation: slideIn 0.3s ease;
         }
 
         .slide.active {
-            display: flex !important;
-            visibility: visible;
-            position: relative;
-            animation: fadeIn 0.4s ease;
+            display: flex;
         }
 
-        @keyframes fadeIn {
+        @keyframes slideIn {
             from {
                 opacity: 0;
+                transform: translateX(20px);
             }
             to {
                 opacity: 1;
+                transform: translateX(0);
             }
+        }
+
+        /* Progresso */
+        .progress-bar {
+            height: 4px;
+            background: #e0e0e0;
+            display: flex;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #8b7fd1;
+            transition: width 0.3s ease;
         }
 
         /* Slide 1 - Título */
@@ -206,8 +182,6 @@
             flex-direction: column;
             gap: 12px;
             margin-bottom: 30px;
-            max-height: 300px;
-            overflow-y: auto;
         }
 
         .opcao-radio {
@@ -436,118 +410,116 @@
         <div class="progress-fill" id="progressFill"></div>
     </div>
 
-    <div class="slides-wrapper">
-        <div class="container">
-            <!-- Slide 1: Título -->
-            <div class="slide slide-titulo active">
-                <h1>Solicitação de Projeto</h1>
-                <p>Gostaria de dedicar um tempo especial com você para discutir uma ideia que tenho em mente.</p>
-                <div class="button-container">
-                    <button class="btn-primary" onclick="proximoSlide()">Começar</button>
+    <div class="container">
+        <!-- Slide 1: Título -->
+        <div class="slide slide-titulo active">
+            <h1>Solicitação de Projeto</h1>
+            <p>Gostaria de dedicar um tempo especial com você para discutir uma ideia que tenho em mente.</p>
+            <div class="button-container">
+                <button class="btn-primary" onclick="proximoSlide()">Começar</button>
+            </div>
+        </div>
+
+        <!-- Slide 2: Pergunta Principal -->
+        <div class="slide slide-pergunta">
+            <h2>Aviso Importante</h2>
+            <p class="frase-especial">Esse convite foi trabalhado e projetado para você</p>
+            <h3>Queren, aceita sair comigo?</h3>
+            <div class="button-container">
+                <button class="btn-sim" onclick="responderSim()">Sim</button>
+                <button class="btn-nao" id="btnNao" onclick="tentarNao(event)">Não</button>
+            </div>
+        </div>
+
+        <!-- Slide 3: Data e Horário -->
+        <div class="slide slide-data">
+            <h2>Data e Horário</h2>
+            <div class="info-box">
+                <label for="data">Selecione a data:</label>
+                <input type="date" id="data">
+                
+                <label for="hora">Selecione a hora:</label>
+                <input type="time" id="hora">
+            </div>
+            <div class="button-container">
+                <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
+                <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
+            </div>
+        </div>
+
+        <!-- Slide 4: O que comer -->
+        <div class="slide slide-comida">
+            <h2>Preferência de Comida</h2>
+            <h3>O que você gostaria de comer?</h3>
+            <div class="opcoes-container">
+                <div class="opcao-radio">
+                    <input type="radio" name="comida" id="burger" value="Burger 🍔">
+                    <label for="burger">🍔 Burger</label>
+                </div>
+                <div class="opcao-radio">
+                    <input type="radio" name="comida" id="pizza" value="Pizza 🍕">
+                    <label for="pizza">🍕 Pizza</label>
+                </div>
+                <div class="opcao-radio">
+                    <input type="radio" name="comida" id="italiano" value="Italiano 🍝">
+                    <label for="italiano">🍝 Italiano</label>
+                </div>
+                <div class="opcao-radio">
+                    <input type="radio" name="comida" id="sushi" value="Sushi 🍣">
+                    <label for="sushi">🍣 Sushi</label>
+                </div>
+                <div class="opcao-radio">
+                    <input type="radio" name="comida" id="surpresa" value="Me Surpreenda 🎁">
+                    <label for="surpresa">🎁 Me Surpreenda</label>
                 </div>
             </div>
+            <div class="button-container">
+                <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
+                <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
+            </div>
+        </div>
 
-            <!-- Slide 2: Pergunta Principal -->
-            <div class="slide slide-pergunta">
-                <h2>Aviso Importante</h2>
-                <p class="frase-especial">Esse convite foi trabalhado e projetado para você</p>
-                <h3>Queren, aceita sair comigo?</h3>
-                <div class="button-container">
-                    <button class="btn-sim" onclick="responderSim()">Sim</button>
-                    <button class="btn-nao" id="btnNao" onclick="tentarNao(event)">Não</button>
+        <!-- Slide 5: Logística -->
+        <div class="slide slide-logistica">
+            <h2>Logística</h2>
+            <h3>Como nos encontramos?</h3>
+            <div class="opcoes-container">
+                <div class="opcao-radio">
+                    <input type="radio" name="logistica" id="lá" value="Nos encontramos lá" onchange="esconderEndereco()">
+                    <label for="lá">Nos encontramos lá</label>
+                </div>
+                <div class="opcao-radio">
+                    <input type="radio" name="logistica" id="busca" value="Você me busca" onchange="mostrarEndereco()">
+                    <label for="busca">Você me busca</label>
                 </div>
             </div>
-
-            <!-- Slide 3: Data e Horário -->
-            <div class="slide slide-data">
-                <h2>Data e Horário</h2>
-                <div class="info-box">
-                    <label for="data">Selecione a data:</label>
-                    <input type="date" id="data">
-                    
-                    <label for="hora">Selecione a hora:</label>
-                    <input type="time" id="hora">
-                </div>
-                <div class="button-container">
-                    <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
-                    <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
-                </div>
+            <div class="endereco-input" id="enderecoInput">
+                <input type="text" placeholder="Digite seu endereço..." id="endereco">
             </div>
-
-            <!-- Slide 4: O que comer -->
-            <div class="slide slide-comida">
-                <h2>Preferência de Comida</h2>
-                <h3>O que você gostaria de comer?</h3>
-                <div class="opcoes-container">
-                    <div class="opcao-radio">
-                        <input type="radio" name="comida" id="burger" value="Burger 🍔">
-                        <label for="burger">🍔 Burger</label>
-                    </div>
-                    <div class="opcao-radio">
-                        <input type="radio" name="comida" id="pizza" value="Pizza 🍕">
-                        <label for="pizza">🍕 Pizza</label>
-                    </div>
-                    <div class="opcao-radio">
-                        <input type="radio" name="comida" id="italiano" value="Italiano 🍝">
-                        <label for="italiano">🍝 Italiano</label>
-                    </div>
-                    <div class="opcao-radio">
-                        <input type="radio" name="comida" id="sushi" value="Sushi 🍣">
-                        <label for="sushi">🍣 Sushi</label>
-                    </div>
-                    <div class="opcao-radio">
-                        <input type="radio" name="comida" id="surpresa" value="Me Surpreenda 🎁">
-                        <label for="surpresa">🎁 Me Surpreenda</label>
-                    </div>
-                </div>
-                <div class="button-container">
-                    <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
-                    <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
-                </div>
+            <div class="button-container">
+                <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
+                <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
             </div>
+        </div>
 
-            <!-- Slide 5: Logística -->
-            <div class="slide slide-logistica">
-                <h2>Logística</h2>
-                <h3>Como nos encontramos?</h3>
-                <div class="opcoes-container">
-                    <div class="opcao-radio">
-                        <input type="radio" name="logistica" id="lá" value="Nos encontramos lá" onchange="esconderEndereco()">
-                        <label for="lá">Nos encontramos lá</label>
-                    </div>
-                    <div class="opcao-radio">
-                        <input type="radio" name="logistica" id="busca" value="Você me busca" onchange="mostrarEndereco()">
-                        <label for="busca">Você me busca</label>
-                    </div>
-                </div>
-                <div class="endereco-input" id="enderecoInput">
-                    <input type="text" placeholder="Digite seu endereço..." id="endereco">
-                </div>
-                <div class="button-container">
-                    <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
-                    <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
-                </div>
+        <!-- Slide 6: Observações -->
+        <div class="slide slide-observacoes">
+            <h2>Observações</h2>
+            <p>Tem algo a dizer? Deixe seu recado aqui.</p>
+            <textarea id="observacoes" placeholder="Escreva aqui..."></textarea>
+            <div class="button-container">
+                <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
+                <button class="btn-proximo" onclick="enviarWhatsApp()">Enviar</button>
             </div>
+        </div>
 
-            <!-- Slide 6: Observações -->
-            <div class="slide slide-observacoes">
-                <h2>Observações</h2>
-                <p>Tem algo a dizer? Deixe seu recado aqui.</p>
-                <textarea id="observacoes" placeholder="Escreva aqui..."></textarea>
-                <div class="button-container">
-                    <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
-                    <button class="btn-proximo" onclick="enviarWhatsApp()">Enviar</button>
-                </div>
-            </div>
-
-            <!-- Slide Final: Mensagem de Sucesso -->
-            <div class="slide slide-final">
-                <h1>Perfeito!</h1>
-                <p>Sua resposta foi enviada para o WhatsApp.</p>
-                <p>Até breve! 😊</p>
-                <div class="button-container">
-                    <button class="btn-primary" onclick="location.reload()">Começar novamente</button>
-                </div>
+        <!-- Slide Final: Mensagem de Sucesso -->
+        <div class="slide slide-final">
+            <h1>Perfeito!</h1>
+            <p>Sua resposta foi enviada para o WhatsApp.</p>
+            <p>Até breve! 😊</p>
+            <div class="button-container">
+                <button class="btn-primary" onclick="location.reload()">Começar novamente</button>
             </div>
         </div>
     </div>
