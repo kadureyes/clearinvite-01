@@ -38,10 +38,22 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            animation: slideIn 0.3s ease;
         }
 
         .slide.active {
             display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         /* Progresso */
@@ -53,7 +65,7 @@
 
         .progress-fill {
             height: 100%;
-            background: #333;
+            background: #8b7fd1;
             transition: width 0.3s ease;
         }
 
@@ -77,10 +89,18 @@
         .slide-pergunta h2 {
             font-size: 1em;
             color: #999;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 500;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+        }
+
+        .slide-pergunta .frase-especial {
+            font-size: 0.95em;
+            color: #8b7fd1;
+            margin-bottom: 25px;
+            font-style: italic;
+            font-weight: 500;
         }
 
         .slide-pergunta h3 {
@@ -102,7 +122,7 @@
 
         .info-box {
             background: #f9f9f9;
-            border-left: 4px solid #333;
+            border-left: 4px solid #8b7fd1;
             padding: 25px;
             margin: 30px 0;
             text-align: left;
@@ -111,13 +131,32 @@
         .info-box p {
             font-size: 1.05em;
             color: #333;
-            margin: 12px 0;
+            margin: 15px 0;
             line-height: 1.6;
         }
 
-        .info-box strong {
+        .info-box label {
             color: #333;
             font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        .info-box input[type="date"],
+        .info-box input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1em;
+            font-family: inherit;
+            margin-bottom: 15px;
+        }
+
+        .info-box input:focus {
+            outline: none;
+            border-color: #8b7fd1;
         }
 
         /* Slide 4 - Comida */
@@ -157,7 +196,7 @@
 
         .opcao-radio:hover {
             background: #f0f0f0;
-            border-color: #333;
+            border-color: #8b7fd1;
         }
 
         .opcao-radio input[type="radio"] {
@@ -165,7 +204,7 @@
             cursor: pointer;
             width: 18px;
             height: 18px;
-            accent-color: #333;
+            accent-color: #8b7fd1;
         }
 
         .opcao-radio label {
@@ -212,7 +251,7 @@
 
         .endereco-input input:focus {
             outline: none;
-            border-color: #333;
+            border-color: #8b7fd1;
         }
 
         /* Slide 6 - Observações */
@@ -245,7 +284,7 @@
 
         .slide-observacoes textarea:focus {
             outline: none;
-            border-color: #333;
+            border-color: #8b7fd1;
         }
 
         /* Slide Final */
@@ -285,56 +324,54 @@
         }
 
         .btn-primary {
-            background: #333;
+            background: #b8a8d8;
             color: white;
             min-width: 140px;
         }
 
         .btn-primary:hover {
-            background: #1a1a1a;
+            background: #a390c9;
         }
 
         .btn-sim {
-            background: #333;
+            background: #22c55e;
             color: white;
             min-width: 140px;
         }
 
         .btn-sim:hover {
-            background: #1a1a1a;
+            background: #16a34a;
         }
 
         .btn-nao {
-            background: #f0f0f0;
-            color: #333;
-            border: 2px solid #ddd;
+            background: #ef4444;
+            color: white;
             position: relative;
             min-width: 140px;
         }
 
         .btn-nao:hover {
-            background: #e8e8e8;
+            background: #dc2626;
         }
 
         .btn-proximo {
-            background: #333;
+            background: #b8a8d8;
             color: white;
             min-width: 140px;
         }
 
         .btn-proximo:hover {
-            background: #1a1a1a;
+            background: #a390c9;
         }
 
         .btn-voltar {
-            background: #f0f0f0;
+            background: #e5e7eb;
             color: #333;
-            border: 2px solid #ddd;
             min-width: 140px;
         }
 
         .btn-voltar:hover {
-            background: #e8e8e8;
+            background: #d1d5db;
         }
 
         /* Mensagem de Tentativa */
@@ -352,6 +389,7 @@
             animation: slideUp 0.3s ease;
             max-width: 90%;
             text-align: center;
+            z-index: 1000;
         }
 
         @keyframes slideUp {
@@ -384,6 +422,7 @@
         <!-- Slide 2: Pergunta Principal -->
         <div class="slide slide-pergunta">
             <h2>Aviso Importante</h2>
+            <p class="frase-especial">Esse convite foi trabalhado e projetado para você</p>
             <h3>Queren, aceita sair comigo?</h3>
             <div class="button-container">
                 <button class="btn-sim" onclick="responderSim()">Sim</button>
@@ -395,8 +434,11 @@
         <div class="slide slide-data">
             <h2>Data e Horário</h2>
             <div class="info-box">
-                <p><strong>Data:</strong> [Insira a data aqui]</p>
-                <p><strong>Horário:</strong> [Insira o horário aqui]</p>
+                <label for="data">Selecione a data:</label>
+                <input type="date" id="data">
+                
+                <label for="hora">Selecione a hora:</label>
+                <input type="time" id="hora">
             </div>
             <div class="button-container">
                 <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
@@ -410,28 +452,24 @@
             <h3>O que você gostaria de comer?</h3>
             <div class="opcoes-container">
                 <div class="opcao-radio">
-                    <input type="radio" name="comida" id="pizza" value="Pizza">
-                    <label for="pizza">Pizza</label>
+                    <input type="radio" name="comida" id="burger" value="Burger 🍔">
+                    <label for="burger">🍔 Burger</label>
                 </div>
                 <div class="opcao-radio">
-                    <input type="radio" name="comida" id="japonesa" value="Comida Japonesa">
-                    <label for="japonesa">Comida Japonesa</label>
+                    <input type="radio" name="comida" id="pizza" value="Pizza 🍕">
+                    <label for="pizza">🍕 Pizza</label>
                 </div>
                 <div class="opcao-radio">
-                    <input type="radio" name="comida" id="italiana" value="Comida Italiana">
-                    <label for="italiana">Comida Italiana</label>
+                    <input type="radio" name="comida" id="italiano" value="Italiano 🍝">
+                    <label for="italiano">🍝 Italiano</label>
                 </div>
                 <div class="opcao-radio">
-                    <input type="radio" name="comida" id="thai" value="Comida Tailandesa">
-                    <label for="thai">Comida Tailandesa</label>
+                    <input type="radio" name="comida" id="sushi" value="Sushi 🍣">
+                    <label for="sushi">🍣 Sushi</label>
                 </div>
                 <div class="opcao-radio">
-                    <input type="radio" name="comida" id="brasileira" value="Comida Brasileira">
-                    <label for="brasileira">Comida Brasileira</label>
-                </div>
-                <div class="opcao-radio">
-                    <input type="radio" name="comida" id="outro" value="Outro">
-                    <label for="outro">Outro</label>
+                    <input type="radio" name="comida" id="surpresa" value="Me Surpreenda 🎁">
+                    <label for="surpresa">🎁 Me Surpreenda</label>
                 </div>
             </div>
             <div class="button-container">
@@ -470,14 +508,14 @@
             <textarea id="observacoes" placeholder="Escreva aqui..."></textarea>
             <div class="button-container">
                 <button class="btn-voltar" onclick="voltarSlide()">Voltar</button>
-                <button class="btn-proximo" onclick="proximoSlide()">Próximo</button>
+                <button class="btn-proximo" onclick="enviarWhatsApp()">Enviar</button>
             </div>
         </div>
 
         <!-- Slide Final: Mensagem de Sucesso -->
         <div class="slide slide-final">
             <h1>Perfeito!</h1>
-            <p>Sua resposta foi registrada com sucesso.</p>
+            <p>Sua resposta foi enviada para o WhatsApp.</p>
             <p>Até breve! 😊</p>
             <div class="button-container">
                 <button class="btn-primary" onclick="location.reload()">Começar novamente</button>
@@ -572,6 +610,45 @@
         function esconderEndereco() {
             document.getElementById('enderecoInput').style.display = 'none';
             document.getElementById('endereco').value = '';
+        }
+
+        function enviarWhatsApp() {
+            // Coleta os dados do formulário
+            const resposta = document.querySelector('input[name="pergunta"]:checked')?.value || 'Sim';
+            const data = document.getElementById('data').value || 'Não preenchido';
+            const hora = document.getElementById('hora').value || 'Não preenchido';
+            const comida = document.querySelector('input[name="comida"]:checked')?.value || 'Não selecionado';
+            const logistica = document.querySelector('input[name="logistica"]:checked')?.value || 'Não selecionado';
+            const endereco = document.getElementById('endereco').value || 'Não informado';
+            const observacoes = document.getElementById('observacoes').value || 'Sem observações';
+
+            // Monta a mensagem
+            let mensagem = `*Resposta do Convite* 📋\n\n`;
+            mensagem += `✅ *Resposta Principal:* Sim\n`;
+            mensagem += `📅 *Data:* ${data}\n`;
+            mensagem += `🕐 *Hora:* ${hora}\n`;
+            mensagem += `🍽️ *Comida:* ${comida}\n`;
+            mensagem += `🚗 *Logística:* ${logistica}\n`;
+            
+            if (logistica === 'Você me busca') {
+                mensagem += `📍 *Endereço:* ${endereco}\n`;
+            }
+            
+            mensagem += `📝 *Observações:* ${observacoes}`;
+
+            // Codifica a mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            
+            // Link do WhatsApp
+            const numeroWhatsApp = '5511998158129'; // +55 11 99815-8129
+            const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+
+            // Abre o WhatsApp
+            window.open(linkWhatsApp, '_blank');
+
+            // Vai para o slide final
+            currentSlide = totalSlides - 1;
+            mostrarSlide(currentSlide);
         }
 
         // Inicializar
